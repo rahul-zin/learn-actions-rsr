@@ -18,9 +18,9 @@ jobs:
     name: Build and deploy lambda layers with site packages to dev layers
     if: ${{ github.event.inputs.ENV_NAME  == 'dev' }}
     steps:
-      run: echo "py3_dev_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
+      - run: echo "py3_dev_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
   build-and-deploy-prod:
     name: Build and deploy lambda layers with site packages to dev layers
     if: ${{ github.event.inputs.ENV_NAME  == 'prod' }}
     steps:
-      run: echo "py3_prod_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
+      - run: echo "py3_prod_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
