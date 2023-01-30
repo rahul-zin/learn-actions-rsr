@@ -1,0 +1,24 @@
+name: build-and-deploy-lambda-layers
+run-name: ${{ github.actor }} is deploying lambda layers
+on: 
+  workflow_dispatch:
+    inputs:
+      ENV_NAME:
+        type: choice
+        description: Select Environment
+        options:
+        - dev
+        - prod
+      BRANCH:
+        description: target branch
+        default: develop
+        required: true
+jobs:
+  build-and-deploy-dev:
+    name: Build and deploy lambda layers with site packages to dev layers
+    if: ${{ github.event.inputs.ENV_NAME  == 'dev' }}
+    run: echo "py3_dev_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
+  build-and-deploy-prod:
+    name: Build and deploy lambda layers with site packages to dev layers
+    if: ${{ github.event.inputs.ENV_NAME  == 'prod' }}
+    run: echo "py3_prod_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
