@@ -19,13 +19,19 @@ jobs:
     name: Build and deploy lambda layers with site packages to dev layers
     if: ${{ github.event.inputs.ENV_NAME  == 'dev' }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '2.7' 
-      - run: pip install -r requirements.txt
-      - run: pip freeze
-      - run: echo "py3_dev_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
+          python-version: '2.7'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip freeze
+          echo "py3_dev_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
   build-and-deploy-prod:
     runs-on: ubuntu-latest
     name: Build and deploy lambda layers with site packages to dev layers
