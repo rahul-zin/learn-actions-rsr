@@ -19,6 +19,11 @@ jobs:
     name: Build and deploy lambda layers with site packages to dev layers
     if: ${{ github.event.inputs.ENV_NAME  == 'dev' }}
     steps:
+      - name: Create src folder
+        run: |
+          mkdir src
+          cd src
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -32,6 +37,10 @@ jobs:
           pip install -r requirements.txt
           pip freeze
           echo "py3_dev_layer_deployment /path/to/src/ ${{github.event.inputs.BRANCH}}"
+
+      - name: ls folder
+        run: ls
+
   build-and-deploy-prod:
     runs-on: ubuntu-latest
     name: Build and deploy lambda layers with site packages to dev layers
