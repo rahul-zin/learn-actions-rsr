@@ -41,6 +41,9 @@ jobs:
       - name: ls folder
         run: ls
 
+      - name: print pwd
+        run: pwd
+
   build-and-deploy-prod:
     runs-on: ubuntu-latest
     name: Build and deploy lambda layers with site packages to dev layers
